@@ -10,6 +10,7 @@ users.generateHash = function(pass, callback){
     bcrypt.hash(pass, 10, callback);
 }
 
+
 users.register = function(username, pass, callback){
     users.generateHash(pass, function(err, hash){
         users[username] = {username, hash};

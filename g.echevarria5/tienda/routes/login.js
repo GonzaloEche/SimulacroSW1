@@ -13,15 +13,15 @@ router.post('/', function(req, res, next){
         users.comparePass(req.body.pass, users[user].hash, function(err, result){
             if(result){
                 req.session.user = users[user];
-                req.session.message = "Welcome!"
+                req.session.message = "Welcome!";
                 res.redirect("/restricted");
             } else {
-                req.session.error = "Incorrect user or password";
+                req.session.error = "Incorrect password";
                 res.redirect("/login");
             }
         });
     } else {
-        req.session.error = "Incorrect user or password";
+        req.session.error = "Incorrect user";
         res.redirect("/login");
     }
 });

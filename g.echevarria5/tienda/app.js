@@ -7,6 +7,7 @@ const session = require('express-session');
 
 let indexRouter = require('./routes/index');
 let loginRouter = require('./routes/login');
+let registroRouter = require('./routes/registro'); //RUTAAAAAAAAAAAAAAA
 let restrictedRouter = require('./routes/restricted');
 
 let app = express();
@@ -40,6 +41,7 @@ app.use(function(req, res, next){
 
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
+app.use('/registro', restrict_registrar,registroRouter); //RUTAAAAAAAAAAAAAAAAAAAAAAa
 app.use('/restricted', restrict, restrictedRouter);
 app.use('/logout', function(req, res, next){
   req.session.destroy(function(){
@@ -55,6 +57,16 @@ function restrict(req, res, next){
     res.redirect("/login");
   }
 }
+
+//En caso de que el usuario esté logeado no pueda volver a acceder a la pestña de registro
+function restrict_registrar(req, res, next){ 
+  if(req.session.user){
+    res.redirect("/");
+  } else {
+    next();
+  }
+}
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

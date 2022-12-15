@@ -1,0 +1,21 @@
+windows:
+    npm ci
+    npm start
+
+linux:
+    npm start (ya ncluimos el npm ci)
+
+socket:
+    npm install socket.io
+
+enlace input:
+    https://developer.mozilla.org/es/docs/Web/HTML/Element/input/text
+
+descargar visual studio:
+    https://darryldias.me/2020/visual-studio-code-on-opensuse-sle/
+
+video formulario:
+    https://www.youtube.com/watch?v=RXS3esRlNK4&t=2364s
+
+la hostia:
+    https://chat.openai.com/chat
