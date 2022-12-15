@@ -17,5 +17,8 @@ descargar visual studio:
 video formulario:
     https://www.youtube.com/watch?v=RXS3esRlNK4&t=2364s
 
+hacer commit:
+    https://lemoncode.net/lemoncode-blog/2017/12/12/git-y-visual-studio-code
+
 la hostia:
     https://chat.openai.com/chat
