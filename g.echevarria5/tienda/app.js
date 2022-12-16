@@ -5,12 +5,36 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 const session = require('express-session');
 
+//CHAT///////////////////////////////////////////////////////////////////////////////
+const {Server} = require("socket.io");
+const http = require("http");
+/////////////////////////////////////////////////////////////////////////////////////
+
 let indexRouter = require('./routes/index');
 let loginRouter = require('./routes/login');
 let registroRouter = require('./routes/registro'); //RUTAAAAAAAAAAAAAAA
 let restrictedRouter = require('./routes/restricted');
 
+/////////////////////////////////////////////////
+let chatRouter = require('./routes/chat'); //CHAAAT
+////////////////////////////////////////////////////
+
 let app = express();
+
+//CHAT/////////////////////////////////////////////////////////////////////////////
+const httpServer = http.createServer(app);
+const io = new Server(httpServer);
+io.on("connection", (socket) => {
+  console.log("A new user has connected");
+  socket.on("chat", (msg) => {
+    console.log(msg);
+    io.emit("chat", msg);
+  });
+  socket.on("disconnect",()=>{
+    console.log("A user has disconnected");
+  });
+});
+////////////////////////////////////////////////////////////////////////////
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -49,6 +73,10 @@ app.use('/logout', function(req, res, next){
   })
 })
 
+////////////////////////////////7
+app.use('/chat',restrict,chatRouter); //SOLO PUEDO ACCEDER AL CHAT EN EL CASO DE QUE HAGA LOGIN O DE QUE ME REGISTRE YA QUE ES LA ÚNICA FORMA DE OBTENER EL "req.session.user"
+/////////////////////////////////////
+
 function restrict(req, res, next){
   if(req.session.user){
     next();
@@ -83,4 +111,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+///////////////////////////////////////////////////////7
+module.exports = {app, httpServer};
+//////////////////////////////////////////////////////
+
+//module.exports = app;

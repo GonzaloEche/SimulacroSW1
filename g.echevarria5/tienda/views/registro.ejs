@@ -1,30 +1,23 @@
 <%- include("header", {}) %>
- <!-- CSS
-<head>
-    <style>
-        #user{
-            color: red;
-        }
-    </style>
-</head>
--->
+<link rel="stylesheet" href="/estilo.css"> <!-- CSS -->
+
 <h1><%= title %></h1>
 <form method="post" action="/registro"> <!-- LA PAGINA oninput(en linea) -->
-    <table border="8">
+    <table id="tabla" border="6">
         <tr>
             <th>Datos</th>
             <th>Rellenar</th>
         </tr> 
         <tr>
-            <td><label for="user">Username:</label> </td><!-- pinchar el nombre "for" y llevarnos -->
+            <td><label for="user"><strong>Username:</strong></label> </td><!-- pinchar el nombre "for" y llevarnos -->
             <td><input required type="text" id="user" name="user" title="nombre de usuario"></td>
         </tr>
         <tr>
-            <td><label for="pass">Password:</label> </td>
+            <td><label for="pass"><strong>Password:</strong></label> </td>
             <td><input required minlength=8 type="password" id="pass" name="pass" title="longitud minima de 8 caracteres"></td>
         </tr>
         <tr>
-            <td><label for="rep_pass">Repeat Password:</label>
+            <td><label for="rep_pass"><strong>Repeat Password:</strong></label>
             <td><input required minlength=8 type="password" id="rep_pass" name="rep_pass" title="asegurese de que las contraseñas coinciden"></td>
         </tr>
     </table>
@@ -40,7 +33,7 @@
     <span id="span" style="color: red;"></span><br>
     <!--<p id="qq" style="color: red;"></p><br>-->
     <button id="btn" type="submit">Submit</button>
-    <input type="reset" value="Reset"> <!-- Reseteo -->
+    <input id="reset" type="reset" value="Reset"> <!-- Reseteo -->
 </form>
 <script type="text/javascript" src="/validacion_cliente.js"></script> <!-- se declara publico en la línea 23 de app -->
 
